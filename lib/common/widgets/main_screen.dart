@@ -26,7 +26,6 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
       initialIndex: _currentIndex,
     );
     
-    // Listen for tab changes
     _tabController.addListener(_handleTabChange);
   }
 
@@ -61,15 +60,17 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
         onTap: (index) {
           _tabController.animateTo(index);
         },
+        backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+        selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+        unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
         items: const [
-      BottomNavigationBarItem(
-            icon: Icon(Icons.home,size:Dimentions.iconSizeDefault),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home, size: Dimentions.iconSizeDefault),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite,size:Dimentions.iconSizeDefault),
+            icon: Icon(Icons.favorite, size: Dimentions.iconSizeDefault),
             label: 'Favorites',
-        
           ),
         ],
       ),

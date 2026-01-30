@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:countries/utils/color_resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:countries/home/controller/home_controller.dart';
@@ -34,16 +33,10 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
   Widget build(BuildContext context) {
     return TextField(
       controller: _controller,
-      decoration: InputDecoration(
-        hintStyle:const TextStyle(fontWeight: FontWeight.w400),
+      decoration:const InputDecoration(
         hintText: 'Search for a country',
-        prefixIcon: const Icon(Icons.search,size: 30),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-        filled: true,
-        fillColor: ColorResources.grey200Color,
+        prefixIcon: const Icon(Icons.search, size: 30),
+        // The theme will automatically apply the styles defined in inputDecorationTheme
       ),
       onChanged: _onSearchChanged,
     );

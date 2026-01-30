@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import '../../data/api_client.dart';
 import '../../data/local_storage.dart';
+import '../../theme/widget/theme_toggle_button.dart';
 import '../domain/repository/home_repo.dart';
 import '../widget/country_list_item.dart';
 
@@ -37,7 +38,9 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Countries'),
         centerTitle: true,
-   
+     actions: const [
+          ThemeToggleButton(), // Add theme toggle button
+        ],
       ),
       body: Column(
         children: [

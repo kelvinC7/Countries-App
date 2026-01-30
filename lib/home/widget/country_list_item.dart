@@ -7,6 +7,8 @@ import 'package:countries/home/controller/home_controller.dart';
 import 'package:countries/home/domain/model/country_summary.dart';
 import 'package:countries/helper/route_helper.dart';
 
+import '../../theme/widget/favorite_icon_theme.dart';
+
 class CountryListItem extends StatelessWidget {
   final CountrySummary country;
 
@@ -95,6 +97,8 @@ class FavoriteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final favoriteTheme = Theme.of(context).extension<FavoriteIconTheme>();
+    
     return IconButton(
       icon: AnimatedSwitcher(
         duration: const Duration(milliseconds: 200),
@@ -106,8 +110,10 @@ class FavoriteButton extends StatelessWidget {
         },
         child: Icon(
           isFavorite ? Icons.favorite : Icons.favorite_border,
-          key: ValueKey(isFavorite), // Important for AnimatedSwitcher
-          color: isFavorite ? ColorResources.redColor : ColorResources.blackColor,
+          key: ValueKey(isFavorite),
+          color: isFavorite 
+              ? favoriteTheme?.favoriteColor ?? Colors.red // Fallback
+              : favoriteTheme?.unfavoriteColor ?? Colors.grey,
           size: 30,
         ),
       ),
@@ -115,7 +121,6 @@ class FavoriteButton extends StatelessWidget {
         final controller = context.read<HomeController>();
         await controller.toggleFavorite(country);
         
-        // Optional: Show feedback
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(

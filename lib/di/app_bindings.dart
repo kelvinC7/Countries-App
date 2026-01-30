@@ -7,6 +7,7 @@ import 'package:countries/detail/domain/repository/detail_repo.dart';
 import 'package:countries/home/controller/home_controller.dart';
 
 import '../favourite/controller/favorite_controller.dart';
+import '../theme/theme_controller.dart';
 
 class AppBindings extends Bindings {
   @override
@@ -41,6 +42,6 @@ class AppBindings extends Bindings {
       repository: Get.find<HomeRepository>(),
     ));
     
-    // DetailController will be created per screen with parameters
+    Get.put(ThemeController(), permanent: true);
   }
 }
