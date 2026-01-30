@@ -19,11 +19,10 @@ class ApiClient {
       // Try to get from cache first
       final cachedCountries = await localStorage.getCachedCountries();
       if (cachedCountries != null && cachedCountries.isNotEmpty) {
-        print('📦 Using cached countries data');
+      
         return cachedCountries;
       }
-      
-      print('🌐 Fetching countries from API');
+     
       final response = await client.get(
         Uri.parse('${AppConstants.baseUrl}all?fields=name,flags,population,cca2,capital'),
       );
@@ -40,12 +39,12 @@ class ApiClient {
         throw Exception('Failed to load countries: ${response.statusCode}');
       }
     } catch (e) {
-      print('API Error: $e');
+     
       
       // Fallback to cache even if expired
       final cachedCountries = await localStorage.getCachedCountries();
       if (cachedCountries != null && cachedCountries.isNotEmpty) {
-        print('🔄 Falling back to expired cache');
+     
         return cachedCountries;
       }
       
@@ -65,7 +64,7 @@ class ApiClient {
         }).toList();
         
         if (filtered.isNotEmpty) {
-          print('🔍 Using cached data for search: $query');
+        
           return filtered;
         }
       }
@@ -84,7 +83,7 @@ class ApiClient {
         throw Exception('Failed to search countries: ${response.statusCode}');
       }
     } catch (e) {
-      print('Search Error: $e');
+   
       
       // Try to use cached data as fallback
       final cachedCountries = await localStorage.getCachedCountries();
@@ -102,16 +101,16 @@ class ApiClient {
   }
 
 Future<Map<String, dynamic>> getCountryDetails(String cca2) async {
-  print('🔍 Fetching country details for: $cca2');
+
   
   // Try cache first
   final cachedDetails = await localStorage.getCachedCountryDetails(cca2);
   if (cachedDetails != null && cachedDetails.isNotEmpty) {
-    print('📦 Using cached details for: $cca2');
+   
     return cachedDetails;
   }
   
-  print('🌐 Fetching details from API for: $cca2');
+
   final uri = Uri.parse('${AppConstants.baseUrl}alpha/$cca2?fields=name,flags,population,capital,region,subregion,area,timezones');
   
   final response = await client.get(uri);
@@ -134,18 +133,16 @@ Future<Map<String, dynamic>> getCountryDetails(String cca2) async {
       
       // Cache the details
       await localStorage.cacheCountryDetails(cca2, details);
-      print('💾 Cached details for: $cca2');
       
       return details;
     } catch (e) {
-      print('💥 Error parsing details: $e');
+   
       throw Exception('Failed to parse country details: $e');
     }
   } else {
     // If API fails, try to return expired cache as fallback
     final expiredCache = await _getExpiredCache(cca2);
     if (expiredCache != null) {
-      print('🔄 Falling back to expired cache for: $cca2');
       return expiredCache;
     }
     
@@ -167,7 +164,7 @@ Future<Map<String, dynamic>?> _getExpiredCache(String cca2) async {
       }
     }
   } catch (e) {
-    print('Error getting expired cache: $e');
+   return null;
   }
   return null;
 }

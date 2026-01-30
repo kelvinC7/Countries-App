@@ -47,7 +47,7 @@ class HomeController extends Cubit<HomeState> {
         // Then refresh from API in background
         _refreshFromApi();
       } catch (e) {
-        print('Cache load failed: $e');
+   
         // If cache fails, load from API
         await _loadFromApi();
       }
@@ -90,7 +90,6 @@ class HomeController extends Cubit<HomeState> {
         ));
       }
     } catch (e) {
-      print('Background refresh failed: $e');
       // Don't emit error for background refresh
     }
   }
@@ -126,7 +125,7 @@ class HomeController extends Cubit<HomeState> {
         ));
       }
     } catch (e) {
-      print('Error toggling favorite: $e');
+     rethrow;
     }
   }
 

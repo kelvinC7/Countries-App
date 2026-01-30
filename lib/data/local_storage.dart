@@ -70,7 +70,7 @@ class LocalStorage {
       final List<dynamic> data = json.decode(jsonString);
       return List<Map<String, dynamic>>.from(data);
     } catch (e) {
-      print('Error parsing cached countries: $e');
+     
       await clearCountriesCache();
       return null;
     }
@@ -101,8 +101,7 @@ class LocalStorage {
     final jsonString = json.encode(details);
     await prefs.setString(key, jsonString);
     await prefs.setInt(timestampKey, DateTime.now().millisecondsSinceEpoch);
-    
-    print('💾 Cached details for: $countryCode');
+
   }
 
   Future<Map<String, dynamic>?> getCachedCountryDetails(String countryCode) async {
@@ -123,8 +122,7 @@ class LocalStorage {
     
     await prefs.remove(key);
     await prefs.remove(timestampKey);
-    
-    print('🗑️ Cleared details cache for: $countryCode');
+  
   }
 
   Future<void> clearAllCountryDetailsCache() async {
@@ -139,7 +137,6 @@ class LocalStorage {
       }
     }
     
-    print('🧹 Cleared all country details cache');
   }
 
   // ===== GENERIC CACHE HELPER =====
@@ -166,7 +163,7 @@ class LocalStorage {
       final dynamic data = json.decode(jsonString);
       return data as T;
     } catch (e) {
-      print('Error parsing cached data: $e');
+     
       await prefs.remove(dataKey);
       await prefs.remove(timestampKey);
       return null;
@@ -200,7 +197,7 @@ class LocalStorage {
     await prefs.remove(_countriesCacheKey);
     await prefs.remove(_countriesTimestampKey);
     await clearAllCountryDetailsCache();
-    print('🧹 Cleared all cache');
+   
   }
 
   // ===== CACHE STATISTICS =====

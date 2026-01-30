@@ -22,8 +22,7 @@ class CountryDetails extends Equatable {
   });
 
   factory CountryDetails.fromJson(Map<String, dynamic> json) {
-    print('🔄 Parsing CountryDetails from JSON');
-    print('🔑 JSON Keys: ${json.keys.toList()}');
+
     
     try {
       // Safely parse name
@@ -102,8 +101,7 @@ class CountryDetails extends Equatable {
           );
         }
       }
-      
-      print('✅ Parsed Country: $countryName');
+    
       
       return CountryDetails(
         name: countryName,
@@ -116,8 +114,7 @@ class CountryDetails extends Equatable {
         timezones: timezonesList,
       );
     } catch (e) {
-      print('💥 Error in CountryDetails.fromJson: $e');
-      print('💥 Stack trace: ${e.toString()}');
+    
       rethrow;
     }
   }

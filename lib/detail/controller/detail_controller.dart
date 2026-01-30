@@ -36,7 +36,7 @@ class DetailController extends Cubit<DetailState> {
         _refreshFromApi();
       }
     } catch (e) {
-      print('Cache load failed: $e');
+     
       // If cache fails, load from API
       await _loadFromApi();
     }
@@ -60,9 +60,9 @@ class DetailController extends Cubit<DetailState> {
   Future<void> _refreshFromApi() async {
     try {
       await repository.getCountryDetails(countryCode);
-      print('✅ Background refresh completed for: $countryCode');
+   
     } catch (e) {
-      print('⚠️ Background refresh failed for $countryCode: $e');
+    return;
     }
   }
 

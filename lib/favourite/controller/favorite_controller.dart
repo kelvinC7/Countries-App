@@ -49,7 +49,7 @@ class FavoritesController extends Cubit<FavoritesState> {
   // Remove a favorite country
   Future<void> removeFavorite(CountrySummary country) async {
     try {
-      print('🗑️ Removing favorite: ${country.name} (${country.cca2})');
+     
       
       // Remove from local storage
       await localStorage.removeFavorite(country.cca2);
@@ -60,7 +60,7 @@ class FavoritesController extends Cubit<FavoritesState> {
       // Show success feedback
       _showSuccessMessage('Removed ${country.name} from favorites');
     } catch (e) {
-      print('💥 Error removing favorite: $e');
+   
       emit(FavoritesError(error: 'Failed to remove favorite: $e'));
       // Re-emit current state after error
       await Future.delayed(const Duration(seconds: 2));
@@ -81,7 +81,7 @@ class FavoritesController extends Cubit<FavoritesState> {
         _showSuccessMessage('Added ${country.name} to favorites');
       }
     } catch (e) {
-      print('💥 Error toggling favorite: $e');
+  
       emit(FavoritesError(error: 'Failed to update favorite: $e'));
     }
   }
@@ -112,7 +112,7 @@ class FavoritesController extends Cubit<FavoritesState> {
       await loadFavorites();
       _showSuccessMessage('Cleared all favorites');
     } catch (e) {
-      print('💥 Error clearing favorites: $e');
+ 
       emit(FavoritesError(error: 'Failed to clear favorites: $e'));
     }
   }
