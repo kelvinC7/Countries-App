@@ -37,7 +37,7 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Countries'),
         centerTitle: true,
-      
+   
       ),
       body: Column(
         children: [

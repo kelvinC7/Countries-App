@@ -1,3 +1,4 @@
+import 'package:countries/utils/color_resources.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -7,8 +8,8 @@ class FavoritesShimmerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,
-      highlightColor: Colors.grey[100]!,
+      baseColor: ColorResources.grey300Color,
+      highlightColor: ColorResources.grey100Color,
       child: ListView.builder(
         itemCount: 8,
         padding: const EdgeInsets.all(16),
@@ -27,13 +28,13 @@ class FavoritesShimmerList extends StatelessWidget {
         children: [
           // Flag placeholder
           Container(
-            width: 44,
-            height: 44,
+            width: 60,
+            height: 80,
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(22),
+              borderRadius: BorderRadius.circular(10),
+              color: ColorResources.whiteColor,
             ),
-          ),
+            ),
           const SizedBox(width: 16),
           // Content placeholder
           Expanded(
@@ -78,13 +79,13 @@ class FavoritesEmptyShimmer extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 80,
-              height: 80,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
+         Container(
+            width: 60,
+            height: 80,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: ColorResources.whiteColor,
+            ),
             ),
             const SizedBox(height: 24),
             Container(

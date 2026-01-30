@@ -7,6 +7,7 @@ import '../../data/local_storage.dart';
 import '../../home/domain/model/country_summary.dart';
 import '../../helper/route_helper.dart';
 import '../../home/domain/repository/home_repo.dart';
+import '../../utils/color_resources.dart';
 import '../controller/favorite_controller.dart';
 import '../widget/favorite_shimmer.dart';
 
@@ -24,19 +25,7 @@ class FavoritesScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Favorites'),
           centerTitle: true,
-          actions: [
-            // Refresh button
-            BlocBuilder<FavoritesController, FavoritesState>(
-              builder: (context, state) {
-                return IconButton(
-                  icon: const Icon(Icons.refresh),
-                  onPressed: () =>
-                      context.read<FavoritesController>().loadFavorites(),
-                  tooltip: 'Refresh favorites',
-                );
-              },
-            ),
-          ],
+
         ),
         body: BlocBuilder<FavoritesController, FavoritesState>(
           builder: (context, state) {
@@ -84,10 +73,8 @@ class FavoritesScreen extends StatelessWidget {
               return RefreshIndicator(
                 onRefresh: () =>
                     context.read<FavoritesController>().loadFavorites(),
-                child: ListView.separated(
+                child: ListView.builder(
                   itemCount: state.favorites.length,
-                  separatorBuilder: (context, index) =>
-                      const Divider(height: 1),
                   itemBuilder: (context, index) {
                     final country = state.favorites[index];
                     return FavoriteCountryItem(country: country);
@@ -114,12 +101,13 @@ class FavoriteCountryItem extends StatelessWidget {
       leading: Hero(
           tag: 'fav-country-flag-${country.cca2}',
           child: Container(
-            width: 80,
+            width: 60,
             height: 80,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
             ),
             child: ClipRRect(
+          
               borderRadius: BorderRadius.circular(10),
               child: CachedNetworkImage(
                 imageUrl: country.flag,
@@ -138,7 +126,7 @@ class FavoriteCountryItem extends StatelessWidget {
         ],
       ),
       trailing: IconButton(
-        icon: const Icon(Icons.favorite, color: Colors.red),
+        icon: const Icon(Icons.favorite_border, color: ColorResources.blackColor),
         onPressed: () {
           showDialog(
             context: context,
@@ -169,7 +157,7 @@ class FavoriteCountryItem extends StatelessWidget {
           arguments: country,
         );
       },
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
     );
   }
 }

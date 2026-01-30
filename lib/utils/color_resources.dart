@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class ColorResources {
 
-  static const Color primaryColor = Colors.deepPurple;
+  static const Color primaryColor = Colors.blue;
 
   static const Color grey100Color = Color(0xFFF5F5F5);
   static const Color grey200Color = Color(0xFFEEEEEE);
