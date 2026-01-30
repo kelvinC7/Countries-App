@@ -25,13 +25,6 @@ class CountryDetailShimmer extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             
-            // Country name placeholder
-            Container(
-              width: 200,
-              height: 32,
-              color: Colors.white,
-            ),
-            const SizedBox(height: 8),
             
             // Section title placeholder
             Container(
@@ -46,8 +39,8 @@ class CountryDetailShimmer extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               crossAxisCount: 2,
-              childAspectRatio: 2.5,
-              mainAxisSpacing: 12,
+              childAspectRatio: 6.0,
+              mainAxisSpacing: 10,
               crossAxisSpacing: 12,
               children: List.generate(4, (index) => Container(
                 decoration: BoxDecoration(
@@ -55,18 +48,17 @@ class CountryDetailShimmer extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 padding: const EdgeInsets.all(12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       width: 80,
                       height: 14,
                       color: Colors.white,
                     ),
-                    const SizedBox(height: 8),
                     Container(
                       width: 60,
-                      height: 18,
+                      height: 14,
                       color: Colors.white,
                     ),
                   ],
